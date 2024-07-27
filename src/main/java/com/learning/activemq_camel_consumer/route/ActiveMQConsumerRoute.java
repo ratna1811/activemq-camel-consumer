@@ -1,5 +1,6 @@
 package com.learning.activemq_camel_consumer.route;
 
+import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.builder.RouteBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,8 +19,11 @@ public class ActiveMQConsumerRoute extends RouteBuilder {
                 .process(exchange -> {
                     String message = exchange.getIn().getBody(String.class);
                     // Process the message
+
                     LOGGER.info("Processing message: " + message);
-                });
+                })
+                .to("mock:processedMessages");
+
     }
 
 }

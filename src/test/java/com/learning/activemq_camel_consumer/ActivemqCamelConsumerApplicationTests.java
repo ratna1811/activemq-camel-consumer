@@ -76,6 +76,7 @@ class ActivemqCamelConsumerApplicationTests {
 		mock.expectedMessageCount(1);
 		producerTemplate.sendBody("activemq:queue:myQueue", message);
 		LOGGER.info("Message sent to queue.");
+		String consumedMessage = mock.getExchanges().get(0).getIn().getBody(String.class);
 
 		mock.assertIsSatisfied();
 		// Below we will not be verifying as in once the message is consumed it will be
@@ -85,7 +86,7 @@ class ActivemqCamelConsumerApplicationTests {
 		// consumerTemplate.receiveBody("activemq:queue:myQueue", 10000, String.class);
 		// LOGGER.info("consumed Message----------------" + consumedMessage);
 
-		// assertEquals(message, consumedMessage);
+		assertEquals(message, consumedMessage);
 
 	}
 }

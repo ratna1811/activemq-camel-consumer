@@ -1,6 +1,5 @@
 package com.learning.activemq_camel_consumer.route;
 
-import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.builder.RouteBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,8 +11,7 @@ public class ActiveMQConsumerRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        // TODO Auto-generated method stub
-        // throw new UnsupportedOperationException("Unimplemented method 'configure'");
+
         from("activemq:queue:myQueue")
                 .log("Received message: ${body}")
                 .process(exchange -> {
